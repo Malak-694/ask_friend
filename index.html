@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Manager</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7cdd0;
+            overflow: hidden;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            /* Allow buttons to wrap */
+        }
+
+        p {
+            font-family: "DynaPuff", serif;
+            font-size: 3rem;
+            text-align: center;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        img {
+            width: 30rem;
+            max-height: 40vh;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            overflow-wrap: break-word;
+            /* Ensure long words break */
+            word-wrap: break-word;
+            /* Fallback for older browsers */
+            white-space: normal;
+            /* Allow text to wrap */
+
+            border-radius: 9px;
+            background: #f365de;
+            border: none;
+            font-family: "DynaPuff", serif;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+            font-size: 3rem;
+            flex: 1 1 auto;
+            /* Allow buttons to grow and shrink */
+
+
+        }
+
+        #bottone2 {
+            background: #81f365;
+        }
+
+        .button:hover {
+            box-shadow: 7px 5px 56px -14px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:active {
+            transform: scale(0.97);
+            box-shadow: 7px 5px 56px -10px rgba(0, 0, 0, 0.2);
+        }
+
+        @media(max-width : 500px) {
+            .button {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body id="body">
+    <!-- From Uiverse.io by TCdesign-dev -->
+    <img id="img" src="mocha-and-milk-cute.gif">
+
+    <p id="p">Do you wanna hang out?</p>
+    <div class="buttons">
+
+        <button class="button" id="bottone1"><strong>YES</strong></button>
+        <button class="button" id="bottone2"><strong>NO</strong></button>
+
+    </div>
+</body>
+<script>
+    var yes = new Map([
+        [1, "are you sure?"],
+        [2, "Free food?"],
+        [3, "i will pay"],
+        [4, "Just one hour?"],
+        [5, "you left me no other choice "]
+
+    ]);
+    // Get the button by its ID
+    var buttons = document.getElementsByClassName("buttons")[0];
+    var p = document.getElementById("p");
+    var nbutton = document.getElementById("bottone2");
+    var ybutton = document.getElementById("bottone1");
+    var img = document.getElementById("img")
+    var nheight = 3;
+    var yheight = 3;
+    var ratio = 1;
+    var click = 0;
+
+
+    // Add a click event listener
+    nbutton.addEventListener("click", () => {
+        click += 1;
+        if (click == 1) {
+            img.setAttribute("src", "sad.gif")
+            document.body.style.backgroundColor = "white";
+            buttons.style.setProperty("flex-direction", "column")
+        }
+        // Change CSS variables
+        if (click <= 4) {
+            ratio *= .5;
+            nheight = nheight - ratio * nheight;
+            var nh = nheight + "rem"
+            yheight += 2;
+            var yh = yheight + "rem"
+            console.log(yh);
+
+
+            nbutton.style.setProperty("font-size", nh);
+            if (click < 3) ybutton.style.setProperty("font-size", yh);
+            else if (click == 3) {
+                console.log(3);
+                ybutton.style.setProperty("font-size", "9rem");
+            }
+            else {
+                ybutton.style.setProperty("font-size", "7rem");
+            }
+            ybutton.innerHTML = yes.get(click);
+            p.style.setProperty("font-size", nh);
+            img.style.setProperty("height", 7 * nheight + "rem");
+            img.style.setProperty("width", 7 * nheight + "rem");
+
+        } else {
+            console.log("eee")
+            ybutton.innerHTML = yes.get(click);
+            ybutton.style.setProperty("height", " 80vh");
+            ybutton.style.setProperty("width", " 100vw");
+            ybutton.style.setProperty("font-size", "10vh");
+            nbutton.style.setProperty("display", "none");
+
+        }
+
+
+    });
+
+    ybutton.addEventListener("click", () => {
+        document.body.style.backgroundColor = "white";
+        img.setAttribute("src", "peach-and-goma.gif")
+        img.style.setProperty("height", " 95vw");
+        img.style.setProperty("width", " 90vw");
+        buttons.style.setProperty("display", "none");
+        p.style.setProperty("display", "none");
+    });
+
+</script>
+
+</html>
+
+<!--
+middle:
+start:
+<div class="tenor-gif-embed" data-postid="6326114825877242584" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/mocha-and-milk-cute-drum-gif-6326114825877242584">Mocha And Milk Cute GIF</a>from <a href="https://tenor.com/search/mocha+and+milk-gifs">Mocha And Milk GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+mid:
+<div class="tenor-gif-embed" data-postid="15098807828074209921" data-share-method="host" data-aspect-ratio="0.901606" data-width="100%"><a href="https://tenor.com/view/sad-gif-15098807828074209921">Sad GIF</a>from <a href="https://tenor.com/search/sad-gifs">Sad GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+finall
+<div class="tenor-gif-embed" data-postid="6326114825877242584" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/mocha-and-milk-cute-drum-gif-6326114825877242584">Mocha And Milk Cute GIF</a>from <a href="https://tenor.com/search/mocha+and+milk-gifs">Mocha And Milk GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+-->
